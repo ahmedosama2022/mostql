@@ -1,0 +1,22 @@
+.nav{
+
+   background-color: rgb(216, 216, 216);
+
+}
+.nav a{
+    color: black;
+    font-weight: 400;
+    text-decoration: none;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    left: 100px;
+}
+.nav img{
+    padding-left: 50px;
+    
+}
+.shopping{
+    width: 50px;
+    height: 60px;
+}

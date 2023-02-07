@@ -1,39 +1,52 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, {  useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProdect } from './Redux/ProddectSlicre';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import { addToCart } from './Redux/CartSlice';
+import { Col , Container, Row} from 'react-bootstrap';
+import "./prodect.css"
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+const Home = () => {
 
-import "./home.css";
+const dispatch = useDispatch();
+const prodect = useSelector((state) => state.prodect);
+  
+  useEffect(() => {
+    dispatch(getProdect());
+  }, []);
+  useEffect(() => {
+    console.log(prodect)
+  }, [prodect])
+  
 
-// import required modules
-import { Autoplay, Pagination, Navigation } from "swiper";
-
-export default function App() {
   return (
-    <>
-      <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
-      >
-         <SwiperSlide><img src="imge\pexels-john-smith-726484-min.jpg"/></SwiperSlide>
-        <SwiperSlide><img src="imge\1.jpg"/></SwiperSlide>
-        <SwiperSlide><img src="imge\pang-yuhao-_kd5cxwZOK4-unsplash-min.jpg"/></SwiperSlide>
-        <SwiperSlide><img src="imge\shane-rounce-PHKgQSGzwpw-unsplash-min.jpg"/></SwiperSlide>
-      </Swiper>
-    </>
-  );
+    <div className='prodect container'>
+       <Container>
+          <Row>
+         { prodect.data.map((prod) => ( 
+           <Col md={12} sm={6} lg={6} xl={4} xxl={5}> 
+       
+                        <div className='pro'>
+                        <Card key={prod.id} style={{ width: '300px' }}>
+                          <Card.Img variant="top" src={prod.image}/>
+                          <Card.Body>
+                            <Card.Title>{prod.title}</Card.Title>
+                            <Card.Text className='decs'>
+                              {prod.description}
+                            </Card.Text>
+                            <Button variant="primary" onClick={() => dispatch(addToCart(prod))} >Add To Cart</Button>
+                          </Card.Body>
+                        </Card>
+                        </div>
+            </Col>
+       
+        ))
+      }
+    </Row>
+       </Container>
+    </div>
+  )
 }
+
+export default Home

@@ -1,0 +1,25 @@
+.prodect{
+    position: relative;
+    top: 150px;
+    display: flex;
+  flex-wrap: nowrap;
+}
+
+.pro img{
+    height: 200px;
+    width: 200px;
+   position: relative;
+   left: 50px;
+   top: 10px;
+}
+.pro{
+    height: 100%;
+    margin-top: 10px;
+}
+body{
+    background-color: rgb(235, 225, 225);
+    
+}
+.decs{
+    height: 100%;
+}
